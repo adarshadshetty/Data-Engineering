@@ -1,0 +1,11 @@
+This is a Completely Hybrid Solution.
+
+We have kafka_producer script , it will generate the random data for telecommunication,....
+It will dump that data in the kafka topic ,From their we will have streaming application which will do some filtration like call more than 60min or 30min etc... and injest that data in the real time RedShift DataWarehouse. Once that data in the Redshift we will build the Quick sight dashboard. Here you will see the complete the Life Cycle. And refresh the data everytime.
+
+Here we will be Using the Spark_Streaming  and Kafka_Producer
+
+Run the Docker file first(Only Confluent kafka)
+
+create topic Telecome-data
+
