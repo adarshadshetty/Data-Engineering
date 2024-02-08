@@ -1,0 +1,33 @@
+Logistic Data warehouse management:->
+
+Here we done
+1.The processing based on the file arrival ,that means as soon as file arriving we need to start our process , It will load the data in the table which is our hive table ,and that will be our daily data ,Once data is loaded their we will create a external hive table on top of it 
+For Example 
+Today we recived 1 file on GCP like logisticdatayyyymmdd.csv automatically this file arrives we should start procesing it. And external hive table on top of it , it will read the data and will injest this data in the partition hive table .And once the data is injested in the partiton hive table , we will move this incoming file from input folder to the archive folder.Beacuse next file should arrive and we should not process the duplicate data.
+
+Overall in the automated way we are going to do it.
+With the help of Airflow,Airflow operators ,we will be using dataproc ,hive and GCP.
+
+
+TechStack:->
+1.GCP Bucket
+2.Airflow
+3.Hive Operators in the Airflow
+4.DataProc cluster
+5.Hive
+
+
+
+
+GCP Bucket -->2 bucket (1.Logistic-raw-->Here we are getting daily file(daily-yyyy-mm-dd.csv) ,2.Logistic archive)
+
+
+As soon as file arrives in the Logistic-raw-->Airflow file sensor(airflow job) it will listen the file arrival.After file arrival we perform the certain stages in Airflow job like 
+1.Create DB
+2.create external stage table 
+3.create partition tableif not exist
+4.load data in the partiton table 
+5.archive -->(daily-yyyy-mm-dd.csv)
+
+
+Hive(On dataproc)
